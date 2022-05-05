@@ -100,15 +100,18 @@ export function getOpenTxnLink(params: { coinType: string; txHash: string }) {
 }
 
 export async function getTxnHex(params: { hash: string; coinType: string }) {
-  const res = await http.post(
-    `${baseURL}/hex`,
-    { coinType: params.coinType },
-    {
-      key: `BTHX-${params.coinType}`,
-      ttl: 60,
-      isRefresh: false
-    }
-  );
+  const res = await http
+    .post(
+      `${baseURL}/hex`,
+      { coinType: params.coinType },
+      {
+        key: `BTHX-${params.coinType}`,
+        ttl: 60,
+        isRefresh: false
+      }
+    )
+    .request();
+
   if (res.data.isForwarded) {
     return await resolveForwarded(res.data, params);
   } else {
