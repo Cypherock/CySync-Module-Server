@@ -15,3 +15,14 @@ export function get(lastId?: string, items?: number) {
 
   return http.get(`${baseURL}?${querystring.stringify(query)}`);
 }
+
+export function getAllLatest(lastId?: string) {
+  let queryString = '?';
+  if (lastId) {
+    const query = new URLSearchParams();
+    query.append('lastId', lastId);
+    queryString += query.toString();
+  }
+
+  return http.get(`${baseURL}/latest${queryString}`);
+}
