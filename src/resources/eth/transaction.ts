@@ -91,7 +91,11 @@ export function setHook(params: { receiveAddress: string }) {
   return http.post(`${baseURL}/set-hook`, params);
 }
 
-export function getOpenTxnLink(params: { network: string; txHash: string }) {
+export function getOpenTxnLink(params: {
+  network: string;
+  txHash: string;
+  isConfirmed: boolean;
+}) {
   return `${config.BASE_URL}${baseURL}/open-txn?${querystring.stringify(
     params
   )}`;
