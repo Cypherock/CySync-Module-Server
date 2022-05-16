@@ -93,7 +93,11 @@ export function setHook(params: { receiveAddress: string; coinType: string }) {
   return http.post(`${baseURL}/set-hook`, params);
 }
 
-export function getOpenTxnLink(params: { coinType: string; txHash: string }) {
+export function getOpenTxnLink(params: {
+  coinType: string;
+  txHash: string;
+  isConfirmed: boolean;
+}) {
   return `${config.BASE_URL}${baseURL}/open-txn?${querystring.stringify(
     params
   )}`;
