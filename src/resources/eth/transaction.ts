@@ -59,7 +59,7 @@ export function getFees(params: { network: string }, isRefresh?: boolean) {
 
   return http.post(url, params, {
     key: `ETF-${params.network}`,
-    ttl: 30,
+    ttl: 1,
     isRefresh
   });
 }

@@ -84,7 +84,7 @@ export function getFees(params: { coinType: string }, isRefresh?: boolean) {
 
   return http.post(url, params, {
     key: `BTF-${params.coinType}`,
-    ttl: 60,
+    ttl: 1,
     isRefresh
   });
 }
