@@ -34,20 +34,3 @@ export function getUtxos(
     isRefresh
   });
 }
-
-export function getBalance(
-  params: { walletName: string; coinType: string },
-  isRefresh?: boolean
-) {
-  let url = `${baseURL}/balance`;
-
-  if (isRefresh) {
-    url += '?isRefresh=true';
-  }
-
-  return http.post(url, params, {
-    key: `BWB-${params.coinType}-${params.walletName}`,
-    ttl: 60,
-    isRefresh
-  });
-}
