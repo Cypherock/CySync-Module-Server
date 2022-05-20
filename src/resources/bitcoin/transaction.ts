@@ -43,26 +43,6 @@ export function getFullHistory(
   });
 }
 
-export function getAddressHistory(
-  params: {
-    address: string;
-    coinType: string;
-  },
-  isRefresh?: boolean
-) {
-  let url = `${baseURL}/address-history`;
-
-  if (isRefresh) {
-    url += '?isRefresh=true';
-  }
-
-  return http.post(url, params, {
-    key: `BTAH-${params.coinType}`,
-    ttl: 60,
-    isRefresh
-  });
-}
-
 export function broadcastTxn(params: {
   transaction: string;
   coinType: string;
