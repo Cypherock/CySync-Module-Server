@@ -17,20 +17,3 @@ export function addAddresses(params: {
 }) {
   return http.post(`${baseURL}/add-address`, params);
 }
-
-export function getUtxos(
-  params: { walletName: string; coinType: string },
-  isRefresh?: boolean
-) {
-  let url = `${baseURL}/fetch-utxos`;
-
-  if (isRefresh) {
-    url += '?isRefresh=true';
-  }
-
-  return http.post(url, params, {
-    key: `BWU-${params.coinType}-${params.walletName}`,
-    ttl: 60,
-    isRefresh
-  });
-}
