@@ -18,23 +18,6 @@ export function addAddresses(params: {
   return http.post(`${baseURL}/add-address`, params);
 }
 
-export function getAddresses(
-  params: { walletName: string; coinType: string },
-  isRefresh?: boolean
-) {
-  let url = `${baseURL}/fetch`;
-
-  if (isRefresh) {
-    url += '?isRefresh=true';
-  }
-
-  return http.post(url, params, {
-    key: `BWA-${params.coinType}-${params.walletName}`,
-    ttl: 30,
-    isRefresh
-  });
-}
-
 export function getUtxos(
   params: { walletName: string; coinType: string },
   isRefresh?: boolean
