@@ -4,23 +4,6 @@ import http from '../../utils/http';
 
 const baseURL = '/transaction';
 
-export function getHistory(
-  params: { walletName: string; coinType: string; limit?: number },
-  isRefresh?: boolean
-) {
-  let url = `${baseURL}/history`;
-
-  if (isRefresh) {
-    url += '?isRefresh=true';
-  }
-
-  return http.post(url, params, {
-    key: `BTH-${params.coinType}-${params.walletName}-${params.limit}`,
-    ttl: 60,
-    isRefresh
-  });
-}
-
 export function broadcastTxn(params: {
   transaction: string;
   coinType: string;
