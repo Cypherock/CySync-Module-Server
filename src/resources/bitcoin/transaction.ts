@@ -1,7 +1,6 @@
 import querystring from 'querystring';
 import config from '../../config';
 import http from '../../utils/http';
-import resolveForwarded from '../../utils/resolveForwarded';
 
 const baseURL = '/transaction';
 
@@ -103,22 +102,11 @@ export function getOpenTxnLink(params: {
   )}`;
 }
 
-export async function getTxnHex(params: { hash: string; coinType: string }) {
-  const res = await http
-    .post(
-      `${baseURL}/hex`,
-      { coinType: params.coinType },
-      {
-        key: `BTHX-${params.coinType}`,
-        ttl: 60,
-        isRefresh: false
-      }
-    )
-    .request();
-
-  if (res.data.isForwarded) {
-    return await resolveForwarded(res.data, params);
-  } else {
-    return res.data;
-  }
+export function getTxnHex(params: { hash: string; coinType: string }) {
+  return http
+    .post(`v2${baseURL}/hex`, params, {
+      key: `BTHX-${params.coinType}`,
+      ttl: 60,
+      isRefresh: false
+    })
 }
