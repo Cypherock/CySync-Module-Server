@@ -103,13 +103,11 @@ export function getOpenTxnLink(params: {
 }
 
 export async function getTxnHex(params: { hash: string; coinType: string }) {
-  const res = await http
+  return http
     .post(`v2${baseURL}/hex`, params, {
       key: `BTHX-${params.coinType}`,
       ttl: 60,
       isRefresh: false
     })
     .request();
-
-  return res.data.data;
 }
