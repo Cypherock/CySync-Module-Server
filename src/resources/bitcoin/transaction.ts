@@ -21,28 +21,6 @@ export function getHistory(
   });
 }
 
-export function getFullHistory(
-  params: {
-    walletName: string;
-    coinType: string;
-    before?: number;
-    after?: number;
-  },
-  isRefresh?: boolean
-) {
-  let url = `${baseURL}/full-history`;
-
-  if (isRefresh) {
-    url += '?isRefresh=true';
-  }
-
-  return http.post(url, params, {
-    key: `BFTH-${params.coinType}-${params.walletName}-${params.before}-${params.after}`,
-    ttl: 60,
-    isRefresh
-  });
-}
-
 export function broadcastTxn(params: {
   transaction: string;
   coinType: string;
