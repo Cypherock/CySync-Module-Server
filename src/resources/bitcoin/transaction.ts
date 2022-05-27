@@ -11,10 +11,6 @@ export function broadcastTxn(params: {
   return http.post(`${baseURL}/broadcast`, params);
 }
 
-export function getReceivePath() {
-  return `${config.BASE_URL}${baseURL}/receive`;
-}
-
 export function getFees(params: { coinType: string }, isRefresh?: boolean) {
   let url = `${baseURL}/fees`;
 
@@ -27,10 +23,6 @@ export function getFees(params: { coinType: string }, isRefresh?: boolean) {
     ttl: 60,
     isRefresh
   });
-}
-
-export function setHook(params: { receiveAddress: string; coinType: string }) {
-  return http.post(`${baseURL}/set-hook`, params);
 }
 
 export function getOpenTxnLink(params: {
