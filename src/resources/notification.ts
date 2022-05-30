@@ -3,7 +3,7 @@ import http from '../utils/http';
 
 const baseURL = '/notification';
 
-export function get(lastId?: string, items?: number) {
+export function get(lastId?: string, items?: number, order?: 'a' | 'd') {
   const query: any = {};
   if (lastId !== undefined) {
     query.lastId = lastId;
@@ -11,6 +11,10 @@ export function get(lastId?: string, items?: number) {
 
   if (items !== undefined) {
     query.items = items;
+  }
+
+  if (order !== undefined) {
+    query.order = order;
   }
 
   return http.get(`${baseURL}?${querystring.stringify(query)}`);
