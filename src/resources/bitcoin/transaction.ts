@@ -1,7 +1,6 @@
 import querystring from 'querystring';
 import config from '../../config';
 import http from '../../utils/http';
-import resolveForwarded from '../../utils/resolveForwarded';
 
 const baseURL = '/transaction';
 
@@ -84,7 +83,7 @@ export function getFees(params: { coinType: string }, isRefresh?: boolean) {
 
   return http.post(url, params, {
     key: `BTF-${params.coinType}`,
-    ttl: 1,
+    ttl: 5,
     isRefresh
   });
 }

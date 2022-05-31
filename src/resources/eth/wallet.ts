@@ -39,7 +39,7 @@ export function getTxnCount(
 
   return http.post(url, params, {
     key: `EWTC-${params.network}-${params.address}-${params.contractAddress}`,
-    ttl: 30,
+    ttl: 10,
     isRefresh
   });
 }
@@ -59,7 +59,7 @@ export function getContractDecimal(
 
   return http.post(url, params, {
     key: `EWTC-${params.network}-${params.contractAddress}`,
-    ttl: 15 * 60,
+    ttl: 600,
     isRefresh
   });
 }
