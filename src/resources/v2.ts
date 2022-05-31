@@ -21,7 +21,7 @@ export function getTransaction(
 
   return http.post(url, params, {
     key: `BB-TX-${params.xpub}-${params.coinType}-${params.page}-${params.from}-${params.to}`,
-    ttl: 60,
+    ttl: 10,
     isRefresh
   });
 }
@@ -38,7 +38,7 @@ export function getBalance(
 
   return http.post(url, params, {
     key: `BB-BAL-${params.xpub}-${params.coinType}`,
-    ttl: 60,
+    ttl: 10,
     isRefresh
   });
 }
@@ -55,7 +55,7 @@ export function getUtxo(
 
   return http.post(url, params, {
     key: `BB-UTX-${params.xpub}-${params.coinType}`,
-    ttl: 60,
+    ttl: 5,
     isRefresh
   });
 }
@@ -72,7 +72,7 @@ export function getUsedAddresses(
 
   return http.post(url, params, {
     key: `BB-UADR-${params.xpub}-${params.coinType}`,
-    ttl: 60,
+    ttl: 10,
     isRefresh
   });
 }

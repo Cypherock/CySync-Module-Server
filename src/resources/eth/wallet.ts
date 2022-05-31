@@ -18,7 +18,7 @@ export function getBalance(
 
   return http.post(url, params, {
     key: `EWB-${params.network}-${params.address}-${params.contractAddress}`,
-    ttl: 30,
+    ttl: 10,
     isRefresh
   });
 }
@@ -39,7 +39,7 @@ export function getTxnCount(
 
   return http.post(url, params, {
     key: `EWTC-${params.network}-${params.address}-${params.contractAddress}`,
-    ttl: 10,
+    ttl: 5,
     isRefresh
   });
 }

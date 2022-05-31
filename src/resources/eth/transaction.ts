@@ -20,7 +20,7 @@ export function getHistory(
 
   return http.post(url, params, {
     key: `ETH-${params.network}-${params.address}-${params.contractAddress}`,
-    ttl: 60,
+    ttl: 10,
     isRefresh
   });
 }
@@ -41,7 +41,7 @@ export function getContractHistory(
 
   return http.post(url, params, {
     key: `ETCH-${params.network}-${params.address}-${params.contractAddress}`,
-    ttl: 60,
+    ttl: 10,
     isRefresh
   });
 }
