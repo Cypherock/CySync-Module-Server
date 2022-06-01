@@ -74,7 +74,7 @@ export async function create(operations: IRequestMetadata[]) {
     const data = batchResponses[serverResponsesIndex[i]];
     allResponses.push(data);
 
-    if (operation.cacheOptions && data?.data && !data.data.isFailed) {
+    if (operation.cacheOptions && data?.data && !data.isFailed) {
       Service.setCacheData(operation.cacheOptions, data.data);
     }
   }
