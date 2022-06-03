@@ -20,7 +20,7 @@ export function getHistory(
 
   return http.post(url, params, {
     key: `ETH-${params.network}-${params.address}-${params.contractAddress}`,
-    ttl: 60,
+    ttl: 10,
     isRefresh
   });
 }
@@ -41,7 +41,7 @@ export function getContractHistory(
 
   return http.post(url, params, {
     key: `ETCH-${params.network}-${params.address}-${params.contractAddress}`,
-    ttl: 60,
+    ttl: 10,
     isRefresh
   });
 }
@@ -59,7 +59,7 @@ export function getFees(params: { network: string }, isRefresh?: boolean) {
 
   return http.post(url, params, {
     key: `ETF-${params.network}`,
-    ttl: 30,
+    ttl: 5,
     isRefresh
   });
 }
@@ -82,7 +82,7 @@ export function getContractFees(
 
   return http.post(url, params, {
     key: `ETCF-${params.network}-${params.contractAddress}-${params.toAddress}-${params.fromAddress}-${params.amount}`,
-    ttl: 30,
+    ttl: 5,
     isRefresh
   });
 }

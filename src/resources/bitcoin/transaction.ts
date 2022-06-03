@@ -20,7 +20,7 @@ export function getFees(params: { coinType: string }, isRefresh?: boolean) {
 
   return http.post(url, params, {
     key: `BTF-${params.coinType}`,
-    ttl: 60,
+    ttl: 5,
     isRefresh
   });
 }
@@ -38,7 +38,7 @@ export function getOpenTxnLink(params: {
 export function getTxnHex(params: { hash: string; coinType: string }) {
   return http.post(`v2${baseURL}/hex`, params, {
     key: `BTHX-${params.coinType}-${params.hash}`,
-    ttl: 60,
+    ttl: 600,
     isRefresh: false
   });
 }
