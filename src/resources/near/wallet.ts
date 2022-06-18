@@ -49,13 +49,16 @@ export function getAccounts(
   },
   isRefresh?: boolean
 ) {
-  let url = `${baseURL}/keys`;
+  let url = `${baseURL}/accounts`;
 
   if (isRefresh) {
     url += '?isRefresh=true';
   }
 
-  return http.post(url, params, {
+  return http.post(url, {
+    publicKey: params.address,
+    network: params.network
+  }, {
     key: `NWA-${params.network}-${params.address}`,
     ttl: 10,
     isRefresh
