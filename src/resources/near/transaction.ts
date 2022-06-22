@@ -31,6 +31,13 @@ export function getBlockHash(params: { network: string; }) {
   return http.post(`${baseURL}/blockhash`, params);
 }
 
+export function getOpenTxnLink(params: {
+  network: string;
+  txHash: string;
+}) {
+  return `${baseURL}/open-txn?${JSON.stringify(params)}`;
+}
+
 export function getFees(params: { network: string }, isRefresh?: boolean) {
   let url = `${baseURL}/fees`;
 
