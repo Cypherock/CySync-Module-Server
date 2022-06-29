@@ -1,4 +1,6 @@
+import querystring from 'querystring';
 import http from '../../utils/http';
+import config from '../../config';
 
 const baseURL = '/near/wallet';
 
@@ -55,14 +57,18 @@ export function getAccounts(
     url += '?isRefresh=true';
   }
 
-  return http.post(url, {
-    publicKey: params.address,
-    network: params.network
-  }, {
-    key: `NWA-${params.network}-${params.address}`,
-    ttl: 10,
-    isRefresh
-  });
+  return http.post(
+    url,
+    {
+      publicKey: params.address,
+      network: params.network
+    },
+    {
+      key: `NWA-${params.network}-${params.address}`,
+      ttl: 10,
+      isRefresh
+    }
+  );
 }
 
 export function getBlockHash(
@@ -82,4 +88,13 @@ export function getBlockHash(
     ttl: 10,
     isRefresh
   });
+}
+export function getCreateTxnLink(params: {
+  network: string;
+  address: string;
+  publicKey: string;
+}) {
+  return `${config.BASE_URL}${baseURL}/open-create-txn?${querystring.stringify(
+    params
+  )}`;
 }
