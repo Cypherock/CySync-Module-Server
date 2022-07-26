@@ -8,7 +8,8 @@ export function getHistory(
   params: {
     address: string;
     network: string;
-    contractAddress?: string;
+    limit?: number;
+    from?: number;
   },
   isRefresh?: boolean
 ) {
@@ -19,7 +20,7 @@ export function getHistory(
   }
 
   return http.post(url, params, {
-    key: `NEAR-${params.network}-${params.address}-${params.contractAddress}`,
+    key: `NEAR-${params.network}-${params.address}`,
     ttl: 10,
     isRefresh
   });
