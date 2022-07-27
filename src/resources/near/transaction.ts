@@ -20,7 +20,7 @@ export function getHistory(
   }
 
   return http.post(url, params, {
-    key: `NEAR-${params.network}-${params.address}`,
+    key: `NEAR-${params.network}-${params.address}-${params.limit}-${params.from}}`,
     ttl: 10,
     isRefresh
   });
