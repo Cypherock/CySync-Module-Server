@@ -70,7 +70,7 @@ export function getContractFees(
     network: string;
     contractAddress: string;
     toAddress: string;
-    amount: number;
+    amount: string;
   },
   isRefresh?: boolean
 ) {
