@@ -50,7 +50,10 @@ export function broadcastTxn(params: { transaction: string; network: string }) {
   return http.post(`${baseURL}/broadcast`, params);
 }
 
-export function getFees(params: { network: string }, isRefresh?: boolean) {
+export function getFees(
+  params: { network: string; responseType: 'v1' | 'v2' },
+  isRefresh?: boolean
+) {
   let url = `${baseURL}/fees`;
 
   if (isRefresh) {
@@ -58,7 +61,7 @@ export function getFees(params: { network: string }, isRefresh?: boolean) {
   }
 
   return http.post(url, params, {
-    key: `ETF-${params.network}`,
+    key: `ETF-${params.responseType}-${params.network}`,
     ttl: 5,
     isRefresh
   });
@@ -71,6 +74,7 @@ export function getContractFees(
     contractAddress: string;
     toAddress: string;
     amount: string;
+    responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
 ) {
@@ -81,7 +85,7 @@ export function getContractFees(
   }
 
   return http.post(url, params, {
-    key: `ETCF-${params.network}-${params.contractAddress}-${params.toAddress}-${params.fromAddress}-${params.amount}`,
+    key: `ETCF-${params.responseType}-${params.network}-${params.contractAddress}-${params.toAddress}-${params.fromAddress}-${params.amount}`,
     ttl: 5,
     isRefresh
   });
