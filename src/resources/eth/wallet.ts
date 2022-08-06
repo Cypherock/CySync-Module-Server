@@ -7,6 +7,7 @@ export function getBalance(
     address: string;
     network: string;
     contractAddress?: string;
+    responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
 ) {
@@ -17,7 +18,7 @@ export function getBalance(
   }
 
   return http.post(url, params, {
-    key: `EWB-${params.network}-${params.address}-${params.contractAddress}`,
+    key: `EWB-${params.responseType}-${params.network}-${params.address}-${params.contractAddress}`,
     ttl: 10,
     isRefresh
   });
@@ -28,6 +29,7 @@ export function getTxnCount(
     address: string;
     network: string;
     contractAddress?: string;
+    responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
 ) {
@@ -38,7 +40,7 @@ export function getTxnCount(
   }
 
   return http.post(url, params, {
-    key: `EWTC-${params.network}-${params.address}-${params.contractAddress}`,
+    key: `EWTC-${params.responseType}-${params.network}-${params.address}-${params.contractAddress}`,
     ttl: 5,
     isRefresh
   });
@@ -48,6 +50,7 @@ export function getContractDecimal(
   params: {
     contractAddress: string;
     network: string;
+    responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
 ) {
@@ -58,7 +61,7 @@ export function getContractDecimal(
   }
 
   return http.post(url, params, {
-    key: `EWTC-${params.network}-${params.contractAddress}`,
+    key: `EWTC-${params.responseType}-${params.network}-${params.contractAddress}`,
     ttl: 600,
     isRefresh
   });
