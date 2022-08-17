@@ -11,6 +11,7 @@ export function send(params: {
   deviceInfo?: any;
   deviceLogs?: any;
   desktopLogs?: any;
+  attachmentUrl?: any;
   uuid: any;
   appVersion: string;
 }) {
