@@ -34,3 +34,7 @@ export function crashReport(params: {
 
   return http.post(`${baseURL}/crash`, params);
 }
+
+export function uploadAttachment(params: { attachment: Buffer }) {
+  return http.post(`${baseURL}/attachment`, params);
+}
