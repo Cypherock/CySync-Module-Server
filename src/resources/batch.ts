@@ -36,7 +36,7 @@ export async function create(operations: IRequestMetadata[]) {
 
     if (operation.customBaseUrl) {
       const service = new Service(operation.customBaseUrl);
-      let resp = undefined;
+      let resp;
       switch (operation.method) {
         case 'GET':
           resp = await service
