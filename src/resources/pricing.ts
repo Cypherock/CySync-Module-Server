@@ -1,7 +1,7 @@
 import http from '../utils/http';
 
 const baseURL = '/pricing';
-const coinGeckoBaseUrl = 'https://api.coingecko.com/api/v3/coins';
+const coinGeckoBaseUrl = 'https://api.coingecko.com/api/v3';
 
 export function get(
   params: { coin: string; days: number },
@@ -9,7 +9,7 @@ export function get(
 ) {
   if (newApi) {
     return http.get(
-      `/${params.coin}/market_chart?vs_currency=usd&days=${params.days}`,
+      `/coins/${params.coin}/market_chart?vs_currency=usd&days=${params.days}`,
       undefined,
       undefined,
       coinGeckoBaseUrl
@@ -17,6 +17,13 @@ export function get(
   } else return http.post(`${baseURL}`, params);
 }
 
-export function getLatest(params: { coin: string }) {
-  return http.post(`${baseURL}/latest`, params);
+export function getLatest(params: { coin: string }, newApi: boolean = false) {
+  if (newApi) {
+    return http.get(
+      `/simple/price?ids=${params.coin}}&vs_currencies=usd`,
+      undefined,
+      undefined,
+      coinGeckoBaseUrl
+    );
+  } else return http.post(`${baseURL}/latest`, params);
 }
