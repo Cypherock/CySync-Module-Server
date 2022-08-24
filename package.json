@@ -1,6 +1,6 @@
 {
   "name": "@cypherock/server-wrapper",
-  "version": "1.0.1-beta.19",
+  "version": "1.0.1-beta.20",
   "description": "All server related operations",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
