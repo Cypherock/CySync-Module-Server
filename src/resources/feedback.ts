@@ -11,6 +11,7 @@ export function send(params: {
   deviceInfo?: any;
   deviceLogs?: any;
   desktopLogs?: any;
+  attachmentUrl?: any;
   uuid: any;
   appVersion: string;
 }) {
@@ -33,4 +34,8 @@ export function crashReport(params: {
   }
 
   return http.post(`${baseURL}/crash`, params);
+}
+
+export function uploadAttachment(params: { attachment: Buffer }) {
+  return http.post(`${baseURL}/attachment`, params);
 }
