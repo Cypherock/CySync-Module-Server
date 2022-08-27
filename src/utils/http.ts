@@ -13,6 +13,7 @@ export interface IRequestMetadata {
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   body?: any;
   cacheOptions?: ICacheOptions;
+  customBaseUrl?: string;
 }
 
 export class Service {
@@ -74,13 +75,15 @@ export class Service {
   public get(
     url: string,
     cacheOptions?: ICacheOptions,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
+    customBaseUrl?: string
   ) {
     return {
       getMetadata: (): IRequestMetadata => ({
         path: url,
         method: 'GET',
-        cacheOptions
+        cacheOptions,
+        customBaseUrl
       }),
       clearCache: () => {
         if (cacheOptions) {
@@ -128,14 +131,16 @@ export class Service {
     url: string,
     data: any,
     cacheOptions?: ICacheOptions,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
+    customBaseUrl?: string
   ) {
     return {
       getMetadata: (): IRequestMetadata => ({
         path: url,
         body: data,
         method: 'POST',
-        cacheOptions
+        cacheOptions,
+        customBaseUrl
       }),
       clearCache: () => {
         if (cacheOptions) {
