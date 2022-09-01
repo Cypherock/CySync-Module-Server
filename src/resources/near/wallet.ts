@@ -8,6 +8,7 @@ export function getBalance(
   params: {
     address: string;
     network: string;
+    responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
 ) {
@@ -74,6 +75,7 @@ export function getAccounts(
 export function getBlockHash(
   params: {
     network: string;
+    responseType: 'v2';
   },
   isRefresh?: boolean
 ) {
