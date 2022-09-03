@@ -54,7 +54,7 @@ export function getFees(
   }
 
   return http.post(url, params, {
-    key: `NTF-${params.network}`,
+    key: `NTF-${params.network}-${params.network}`,
     ttl: 5,
     isRefresh
   });

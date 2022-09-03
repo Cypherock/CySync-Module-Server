@@ -19,7 +19,7 @@ export function getBalance(
   }
 
   return http.post(url, params, {
-    key: `NWB-${params.network}-${params.address}`,
+    key: `NWB-${params.responseType}-${params.network}-${params.address}`,
     ttl: 10,
     isRefresh
   });
@@ -72,25 +72,6 @@ export function getAccounts(
   );
 }
 
-export function getBlockHash(
-  params: {
-    network: string;
-    responseType: 'v2';
-  },
-  isRefresh?: boolean
-) {
-  let url = `${baseURL}/get`;
-
-  if (isRefresh) {
-    url += '?isRefresh=true';
-  }
-
-  return http.post(url, params, {
-    key: `NWA-${params.network}`,
-    ttl: 10,
-    isRefresh
-  });
-}
 export function getCreateTxnLink(params: {
   network: string;
   address: string;
