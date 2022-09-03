@@ -30,7 +30,10 @@ export function broadcastTxn(params: { transaction: string; network: string }) {
   return http.post(`${baseURL}/broadcast`, params);
 }
 
-export function getBlockHash(params: { network: string }) {
+export function getBlockHash(params: {
+  network: string;
+  responseType: 'v1' | 'v2';
+}) {
   return http.post(`${baseURL}/blockhash`, params);
 }
 
@@ -40,7 +43,10 @@ export function getOpenTxnLink(params: { network: string; txHash: string }) {
   )}`;
 }
 
-export function getFees(params: { network: string }, isRefresh?: boolean) {
+export function getFees(
+  params: { network: string; responseType: 'v1' | 'v2' },
+  isRefresh?: boolean
+) {
   let url = `${baseURL}/fees`;
 
   if (isRefresh) {
@@ -48,7 +54,7 @@ export function getFees(params: { network: string }, isRefresh?: boolean) {
   }
 
   return http.post(url, params, {
-    key: `NTF-${params.network}`,
+    key: `NTF-${params.responseType}-${params.network}`,
     ttl: 5,
     isRefresh
   });
