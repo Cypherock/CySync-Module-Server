@@ -1,23 +1,26 @@
 import { IRequestMetadata, Service } from '../utils/http';
 
-export interface IBatchResponse {
+export interface IClientResponse {
   status?: number;
   data?: any;
   isFailed: boolean;
   headers?: boolean;
+  delay?: number;
 }
 
-export async function create(
-  operations: IRequestMetadata[],
-  timeout: { pause: boolean; tryAfter: number }
-) {
-  const clientResponses: Record<number, IBatchResponse> = {};
-  console.log(timeout);
+export async function create(operations: IRequestMetadata[]) {
+  const clientResponses: Record<number, IClientResponse> = {};
   console.log('client', operations.length);
+  let failAll = false;
+  const rateLimitResponse = { status: 429, isFailed: true, delay: 120000 };
   for (let i = 0; i < operations.length; i++) {
     const operation = operations[i];
 
     if (operation.customBaseUrl) {
+      if (failAll) {
+        clientResponses[i] = rateLimitResponse;
+        continue;
+      }
       try {
         const service = new Service(operation.customBaseUrl);
         let resp;
@@ -36,12 +39,15 @@ export async function create(
         clientResponses[i] = resp;
       } catch (error: any) {
         console.log({ ...error });
-        console.log(error.response);
+        if (error.response.status === 429) {
+          failAll = true;
+          clientResponses[i] = rateLimitResponse;
+        }
       }
     }
   }
 
-  const allResponses: IBatchResponse[] = [];
+  const allResponses: IClientResponse[] = [];
 
   for (let i = 0; i < operations.length; i++) {
     if (clientResponses[i]) {
@@ -49,6 +55,5 @@ export async function create(
     }
   }
 
-  console.log('client', allResponses.length);
   return allResponses;
 }
