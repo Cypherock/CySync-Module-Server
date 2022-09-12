@@ -12,6 +12,7 @@ export * as tutorial from './tutorial';
 export * as feedback from './feedback';
 export * as v2 from './v2';
 export * as batch from './batch';
+export * as client from './client';
 
 export const getServerUrl = () => {
   return config.BASE_URL;

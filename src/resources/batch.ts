@@ -11,7 +11,6 @@ export interface IBatchResponse {
 
 export async function create(operations: IRequestMetadata[]) {
   const cachedResponses: Record<number, IBatchResponse> = {};
-  const clientResponses: Record<number, IBatchResponse> = {};
   const serverResponsesIndex: Record<number, number> = {};
   const requestOperations: Array<{
     path: string;
@@ -34,25 +33,7 @@ export async function create(operations: IRequestMetadata[]) {
       }
     }
 
-    if (operation.customBaseUrl) {
-      const service = new Service(operation.customBaseUrl);
-      let resp;
-      switch (operation.method) {
-        case 'GET':
-          resp = await service
-            .get(operation.path, operation.cacheOptions)
-            .request();
-          break;
-        case 'POST':
-          resp = await service
-            .post(operation.path, operation.body, operation.cacheOptions)
-            .request();
-          break;
-      }
-      clientResponses[i] = resp;
-    }
-
-    if (!cachedResponses[i] && !clientResponses[i]) {
+    if (!cachedResponses[i] && !operation.customBaseUrl) {
       serverResponsesIndex[i] = Object.keys(serverResponsesIndex).length;
       requestOperations.push({
         path: operation.path,
@@ -80,11 +61,6 @@ export async function create(operations: IRequestMetadata[]) {
     const operation = operations[i];
     if (cachedResponses[i]) {
       allResponses.push(cachedResponses[i]);
-      continue;
-    }
-
-    if (clientResponses[i]) {
-      allResponses.push(clientResponses[i]);
       continue;
     }
 
