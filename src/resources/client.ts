@@ -10,7 +10,6 @@ export interface IClientResponse {
 
 export async function create(operations: IRequestMetadata[]) {
   const clientResponses: Record<number, IClientResponse> = {};
-  console.log('client', operations.length);
   let failAll = false;
   const rateLimitResponse = { status: 429, isFailed: true, delay: 120000 };
   for (let i = 0; i < operations.length; i++) {
@@ -38,8 +37,7 @@ export async function create(operations: IRequestMetadata[]) {
         }
         clientResponses[i] = resp;
       } catch (error: any) {
-        console.log({ ...error });
-        if (error.response.status === 429) {
+        if (error.response?.status === 429) {
           failAll = true;
           clientResponses[i] = rateLimitResponse;
         }
