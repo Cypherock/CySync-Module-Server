@@ -161,23 +161,3 @@ export class Service {
 const http = new Service(envConfig.BASE_URL);
 
 export default http;
-
-// async function run() {
-//   const coinGeckoBaseUrl = 'https://api.coingecko.com/api/v3';
-//   const url = `/simple/price?ids=bitcoin&vs_currencies=usd`;
-
-//   const coinGecko = new Service(coinGeckoBaseUrl);
-
-//   let resp;
-//   for (let i = 0; i < 60; i++) {
-//     resp = await coinGecko.get(url).request();
-//   }
-//   console.log(resp);
-// }
-
-// try {
-//   run();
-// } catch (err: any) {
-//   console.log(err);
-//   console.log(err.response);
-// }
