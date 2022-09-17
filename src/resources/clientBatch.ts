@@ -35,11 +35,24 @@ export async function create(operations: IRequestMetadata[]) {
               .request();
             break;
         }
-        clientResponses[i] = resp;
+        clientResponses[i] = {
+          data: resp.data,
+          status: resp.status,
+          isFailed: false,
+          headers: resp.headers
+        };
       } catch (error: any) {
         if (error.response?.status === 429) {
           failAll = true;
           clientResponses[i] = rateLimitResponse;
+        } else {
+          const resp = error?.response;
+          clientResponses[i] = {
+            data: resp?.data,
+            status: resp?.status || -1,
+            isFailed: true,
+            headers: resp?.headers
+          };
         }
       }
     }
