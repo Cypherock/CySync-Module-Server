@@ -10,6 +10,7 @@ export function getHistory(
     network: string;
     limit?: number;
     from?: number;
+    responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
 ) {
