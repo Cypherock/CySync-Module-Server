@@ -7,6 +7,7 @@ export * as pricing from './pricing';
 export * as eth from './eth';
 export * as bitcoin from './bitcoin';
 export * as near from './near';
+export * as solana from './solana';
 export * as notification from './notification';
 export * as tutorial from './tutorial';
 export * as feedback from './feedback';
