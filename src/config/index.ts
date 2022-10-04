@@ -11,8 +11,6 @@ if (process.env.SERVER_ENV === 'production') {
   baseUrl = 'https://api.cypherock.com';
 }
 
-baseUrl = 'http://localhost:5000';
-
 export default {
   BASE_URL: baseUrl
 };
