@@ -9,7 +9,8 @@ export function getHistory(
     address: string;
     network: string;
     limit?: number;
-    from?: number;
+    from?: string;
+    before?: string;
   },
   isRefresh?: boolean
 ) {
@@ -20,7 +21,7 @@ export function getHistory(
   }
 
   return http.post(url, params, {
-    key: `SOLANA-${params.network}-${params.address}-${params.limit}-${params.from}}`,
+    key: `SOLANA-${params.network}-${params.address}-${params.limit}-${params.from}-${params.before}}`,
     ttl: 10,
     isRefresh
   });
