@@ -9,6 +9,9 @@ export function getHistory(
     address: string;
     network: string;
     contractAddress?: string;
+    from?: number;
+    limit?: number;
+    responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
 ) {
@@ -30,6 +33,9 @@ export function getContractHistory(
     address: string;
     network: string;
     contractAddress?: string;
+    from?: number;
+    limit?: number;
+    responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
 ) {
