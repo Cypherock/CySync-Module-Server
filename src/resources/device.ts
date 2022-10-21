@@ -20,6 +20,10 @@ export function challenge(params: {
   postfix1?: string;
   postfix2?: string;
   isTestApp?: boolean;
+  email?: string;
+  cysyncVersion?: string;
+  onlyFailure?: boolean;
+  grouped?: boolean;
 }) {
   return http.post(`${baseURL}/challenge`, params);
 }
