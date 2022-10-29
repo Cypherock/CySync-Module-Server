@@ -23,7 +23,7 @@ export function challenge(params: {
   email?: string;
   cysyncVersion?: string;
   onlyFailure?: boolean;
-  grouped?: boolean;
+  sessionId?: string;
 }) {
   return http.post(`${baseURL}/challenge`, params);
 }
