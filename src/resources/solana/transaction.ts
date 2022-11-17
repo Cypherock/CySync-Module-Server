@@ -54,3 +54,20 @@ export function getFees(params: { network: string }, isRefresh?: boolean) {
     isRefresh
   });
 }
+
+export function transactionStatus(
+  params: { network: string; txHash: string },
+  isRefresh?: boolean
+) {
+  let url = `${baseURL}/transaction-status`;
+
+  if (isRefresh) {
+    url += '?isRefresh=true';
+  }
+
+  return http.post(url, params, {
+    key: `STS-${params.network}-${params.txHash}`,
+    ttl: 5,
+    isRefresh
+  });
+}

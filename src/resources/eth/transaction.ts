@@ -101,6 +101,23 @@ export function setHook(params: { receiveAddress: string }) {
   return http.post(`${baseURL}/set-hook`, params);
 }
 
+export function transactionStatus(
+  params: { network: string; txHash: string },
+  isRefresh?: boolean
+) {
+  let url = `${baseURL}/transaction-status`;
+
+  if (isRefresh) {
+    url += '?isRefresh=true';
+  }
+
+  return http.post(url, params, {
+    key: `ETTS-${params.network}-${params.txHash}`,
+    ttl: 5,
+    isRefresh
+  });
+}
+
 export function getOpenTxnLink(params: {
   network: string;
   txHash: string;

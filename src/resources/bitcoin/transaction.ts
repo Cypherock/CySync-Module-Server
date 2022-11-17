@@ -35,8 +35,16 @@ export function getOpenTxnLink(params: {
   )}`;
 }
 
+export function transactionStatus(params: { hash: string; coinType: string }) {
+  return http.post(`/v2${baseURL}/status`, params, {
+    key: `BTS-${params.coinType}-${params.hash}`,
+    ttl: 5,
+    isRefresh: false
+  });
+}
+
 export function getTxnHex(params: { hash: string; coinType: string }) {
-  return http.post(`v2${baseURL}/hex`, params, {
+  return http.post(`/v2${baseURL}/hex`, params, {
     key: `BTHX-${params.coinType}-${params.hash}`,
     ttl: 600,
     isRefresh: false
