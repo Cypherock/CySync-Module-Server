@@ -60,3 +60,24 @@ export function getFees(
     isRefresh
   });
 }
+
+export function transactionStatus(
+  params: {
+    network: string;
+    txHash: string;
+    sender: string;
+  },
+  isRefresh?: boolean
+) {
+  let url = `${baseURL}/transaction-status`;
+
+  if (isRefresh) {
+    url += '?isRefresh=true';
+  }
+
+  return http.post(url, params, {
+    key: `NTS-${params.network}-${params.txHash}`,
+    ttl: 5,
+    isRefresh
+  });
+}
