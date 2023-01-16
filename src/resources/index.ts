@@ -14,6 +14,7 @@ export * as feedback from './feedback';
 export * as v2 from './v2';
 export * as serverBatch from './serverBatch';
 export * as clientBatch from './clientBatch';
+export * as swap from './swap';
 
 export const getServerUrl = () => {
   return config.BASE_URL;
