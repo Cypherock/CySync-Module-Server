@@ -107,7 +107,7 @@ export function getEstimatedGas(
   },
   isRefresh?: boolean
 ) {
-  let url = `${baseURL}/estimate-fees`;
+  let url = `${baseURL}/estimate-gas`;
 
   if (isRefresh) {
     url += '?isRefresh=true';
