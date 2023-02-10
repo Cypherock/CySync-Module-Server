@@ -97,6 +97,31 @@ export function getContractFees(
   });
 }
 
+export function getEstimatedGas(
+  params: {
+    from: string;
+    to: string;
+    network: string;
+    amount: string;
+    data: string;
+  },
+  isRefresh?: boolean
+) {
+  let url = `${baseURL}/estimate-fees`;
+
+  if (isRefresh) {
+    url += '?isRefresh=true';
+  }
+
+  return http.post(url, params, {
+    key: `ETEG-${params.from}-${params.to}-${params.network}-${
+      params.amount
+    }-${params.data.slice(0, 10)}`,
+    ttl: 5,
+    isRefresh
+  });
+}
+
 export function setHook(params: { receiveAddress: string }) {
   return http.post(`${baseURL}/set-hook`, params);
 }
