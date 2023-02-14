@@ -116,7 +116,7 @@ export function getEstimatedGas(
   return http.post(url, params, {
     key: `ETEG-${params.from}-${params.to}-${params.network}-${
       params.amount
-    }-${params.data.slice(0, 10)}`,
+    }-${params.data.slice(0, 10)}`, // function signature
     ttl: 5,
     isRefresh
   });
