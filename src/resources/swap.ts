@@ -9,6 +9,7 @@ export function createTransaction(params: {
   to: string;
   amount: string;
   address: string;
+  serial: string;
 }) {
   return http.get(`${baseURL}/transaction?${querystring.stringify(params)}`);
 }
