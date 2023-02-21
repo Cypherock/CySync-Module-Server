@@ -113,7 +113,6 @@ export function getEstimatedGas(
     url += '?isRefresh=true';
   }
 
-  params.value = '1';
   return http.post(url, params, {
     key: `ETEG-${params.from}-${params.to}-${params.network}-${
       params.value
