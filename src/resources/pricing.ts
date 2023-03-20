@@ -20,7 +20,7 @@ export function get(
 export function getLatest(params: { coin: string }, newApi: boolean = false) {
   if (newApi) {
     return http.get(
-      `/simple/price?ids=${params.coin}&vs_currencies=usd`,
+      `/simple/price?ids=${params.coin}&vs_currencies=usd&include_last_updated_at=true`,
       undefined,
       undefined,
       coinGeckoBaseUrl
