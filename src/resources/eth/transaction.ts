@@ -11,6 +11,7 @@ export function getHistory(
     contractAddress?: string;
     from?: number;
     limit?: number;
+    internal?: boolean;
     responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
