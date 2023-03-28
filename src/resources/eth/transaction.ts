@@ -104,6 +104,7 @@ export function getEstimatedGas(
     network: string;
     value: string;
     data?: string;
+    responseType: 'v1' | 'v2';
   },
   isRefresh?: boolean
 ) {
@@ -114,9 +115,9 @@ export function getEstimatedGas(
   }
 
   return http.post(url, params, {
-    key: `ETEG-${params.from}-${params.to}-${params.network}-${
-      params.value
-    }-${params.data?.slice(0, 10)}`, // function signature
+    key: `ETEG-${params.responseType}-${params.from}-${params.to}-${
+      params.network
+    }-${params.value}-${params.data?.slice(0, 10)}`, // function signature
     ttl: 5,
     isRefresh
   });
